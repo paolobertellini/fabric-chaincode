@@ -17,6 +17,10 @@ Inspired from [Create java chaincode - medium tutorial](https://medium.com/coinm
 4. Stop the network
 `./network.sh down`
 
+5. Clean the network
+`docker rm -f $(docker ps -aq)`
+`docker rmi -f $(docker images -q)`
+
 ## Environment variables for Org1 and Org2
 
 Org 1 <br>
