@@ -1,24 +1,18 @@
-# hlf2-network
+# Agreement network
 A Hyperledger Fabric network with a java chaincode
 
-More info in Medium tutorials
-* [Create java chaincode](https://medium.com/coinmonks/how-to-create-a-java-chaincode-and-deploy-in-a-hyperledger-fabric-2-network-65199e5f645d) 
-
-# Installation instructions
-
-1. Download the template:
-`git clone https://github.com/ialberquilla/hlf1.4-couchdb`
-
-2. Download bin and config files
-`curl -sSL https://bit.ly/2ysbOFE | bash -s -- -d -s`
+Inspired from [Create java chaincode - medium tutorial](https://medium.com/coinmonks/how-to-create-a-java-chaincode-and-deploy-in-a-hyperledger-fabric-2-network-65199e5f645d) 
 
 
-# Start the network
-`./network.sh up createChannel`
+1. Start the network
+`./network.sh up`
 
-# Deploy the chaincode
+2. Create the channel
+`./network.sh createChannel`
+
+3. Deploy the chaincode
 `./network.sh deployCC -l java`
 
-# Stop the network
+4. Stop the network
 `./network.sh down`
 
