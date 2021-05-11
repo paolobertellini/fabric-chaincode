@@ -1,3 +1,7 @@
+
+import java.util.ArrayList;
+import java.util.List;
+
 import com.owlike.genson.Genson;
 import org.hyperledger.fabric.contract.Context;
 import org.hyperledger.fabric.contract.ContractInterface;
@@ -5,6 +9,8 @@ import org.hyperledger.fabric.contract.annotation.*;
 import org.hyperledger.fabric.shim.ChaincodeException;
 import org.hyperledger.fabric.shim.ChaincodeStub;
 
+import org.hyperledger.fabric.shim.ledger.KeyValue;
+import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 
 @Contract(
         name = "Agreements",
@@ -82,6 +88,35 @@ import org.hyperledger.fabric.shim.ChaincodeStub;
         stub.putStringState(key, newAgreementState);
 
         return newAgreement;
+    }
+    
+    /**
+     * Retrieves all agreements from the ledger.
+     *
+     * @param ctx the transaction context
+     * @return array of agreements found on the ledger
+     */
+    @Transaction(intent = Transaction.TYPE.EVALUATE)
+    public String GetAllAgreements(final Context ctx) {
+        ChaincodeStub stub = ctx.getStub();
+
+        List<Agreement> queryResults = new ArrayList<Agreement>();
+
+        // To retrieve all assets from the ledger use getStateByRange with empty startKey & endKey.
+        // Giving empty startKey & endKey is interpreted as all the keys from beginning to end.
+        // As another example, if you use startKey = 'asset0', endKey = 'asset9' ,
+        // then getStateByRange will retrieve asset with keys between asset0 (inclusive) and asset9 (exclusive) in lexical order.
+        QueryResultsIterator<KeyValue> results = stub.getStateByRange("", "");
+
+        for (KeyValue result: results) {
+            Agreement agreement = genson.deserialize(result.getStringValue(), Agreement.class);
+            queryResults.add(agreement);
+            System.out.println(agreement.toString());
+        }
+
+        final String response = genson.serialize(queryResults);
+
+        return response;
     }
 
 }
