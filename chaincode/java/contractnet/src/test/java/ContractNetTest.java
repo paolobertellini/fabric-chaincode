@@ -14,7 +14,7 @@ import static org.mockito.Mockito.when;
 public final class ContractNetTest {
 
     @Nested
-    class InvokeQueryCfpTransaction {
+    class InvokeQueryCallForProposalTransaction {
 
         @Test
         public void whenCfpExists() {
@@ -25,7 +25,7 @@ public final class ContractNetTest {
             when(stub.getStringState("ARG000"))
                     .thenReturn("{\"id\":\"cfp001\",\"initiator\":\"Paolo\",\"status\":\"issued\"}");
 
-            Cfp cfp = contract.getCfp(ctx, "ARG000");
+            CallForProposal cfp = contract.getCfp(ctx, "ARG000");
 
             assertThat(cfp.getId())
                     .isEqualTo("cfp001");

@@ -4,7 +4,125 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80160afe-6c7e-4e2e-8ef1-990f1e9da4dc" name="Default Changelist" comment="" />
+    <list default="true" id="80160afe-6c7e-4e2e-8ef1-990f1e9da4dc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/CallForProposal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../agreements/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../agreements/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../agreements/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../agreements/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../agreements/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../agreements/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../agreements/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../agreements/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../agreements/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../agreements/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../agreements/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../agreements/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../agreements/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../agreements/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Cfp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ContractNet.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ContractNet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/CfpTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/CfpTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/classes/CfpTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/classes/CfpTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/classes/ContractNetTest$InvokeQueryCfpTransaction.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/classes/ContractNetTest$InvokeQueryCfpTransaction.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/packages/default-package.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/packages/default-package.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/TEST-CfpTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/TEST-CfpTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/TEST-ContractNetTest$InvokeQueryCfpTransaction.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/TEST-ContractNetTest$InvokeQueryCfpTransaction.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Cfp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Partecipant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ContractNet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ContractNet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CfpTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CallForProposalTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ContractNetTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ContractNetTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/channel-artifacts/mychannel.block" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/channel-artifacts/mychannel.block" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/ca/ca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/ca/ca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/ca/priv_sk" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/ca/priv_sk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/msp/cacerts/ca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/msp/cacerts/ca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/cacerts/ca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/cacerts/ca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/keystore/priv_sk" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/keystore/priv_sk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/signcerts/orderer.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/signcerts/orderer.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/tlsca/priv_sk" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/tlsca/priv_sk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/tlsca/tlsca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/tlsca/tlsca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp/cacerts/ca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp/cacerts/ca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp/keystore/priv_sk" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp/keystore/priv_sk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp/signcerts/Admin@example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp/signcerts/Admin@example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp/tlscacerts/tlsca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp/tlscacerts/tlsca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/users/Admin@example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/users/Admin@example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/users/Admin@example.com/tls/client.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/users/Admin@example.com/tls/client.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/users/Admin@example.com/tls/client.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/users/Admin@example.com/tls/client.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/ca/ca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/ca/ca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/ca/priv_sk" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/ca/priv_sk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/connection-org1.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/connection-org1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/connection-org1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/connection-org1.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/keystore/priv_sk" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/keystore/priv_sk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/signcerts/peer0.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/signcerts/peer0.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/tlsca/priv_sk" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/tlsca/priv_sk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/priv_sk" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/priv_sk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/tls/client.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/tls/client.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/tls/client.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/tls/client.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/priv_sk" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/priv_sk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts/User1@org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts/User1@org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/tls/client.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/tls/client.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/tls/client.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/tls/client.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/ca/ca.org2.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/ca/ca.org2.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/ca/priv_sk" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/ca/priv_sk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/connection-org2.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/connection-org2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/connection-org2.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/connection-org2.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/msp/cacerts/ca.org2.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/msp/cacerts/ca.org2.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/msp/tlscacerts/tlsca.org2.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/msp/tlscacerts/tlsca.org2.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp/cacerts/ca.org2.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp/cacerts/ca.org2.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp/keystore/priv_sk" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp/keystore/priv_sk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp/signcerts/peer0.org2.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp/signcerts/peer0.org2.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp/tlscacerts/tlsca.org2.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp/tlscacerts/tlsca.org2.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/server.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/server.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/server.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/server.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/tlsca/priv_sk" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/tlsca/priv_sk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/tlsca/tlsca.org2.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/tlsca/tlsca.org2.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/cacerts/ca.org2.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/cacerts/ca.org2.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/priv_sk" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/priv_sk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/Admin@org2.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/Admin@org2.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/tlscacerts/tlsca.org2.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/tlscacerts/tlsca.org2.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/tls/client.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/tls/client.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/tls/client.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/tls/client.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/cacerts/ca.org2.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/cacerts/ca.org2.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/keystore/priv_sk" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/keystore/priv_sk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/signcerts/User1@org2.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/signcerts/User1@org2.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/tlscacerts/tlsca.org2.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/tlscacerts/tlsca.org2.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/tls/client.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/tls/client.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/tls/client.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/tls/client.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../network/scripts/deployCC.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/scripts/deployCC.sh" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +148,13 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
@@ -46,6 +171,11 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
   </component>
   <component name="RunManager" selected="Gradle.Tests in 'contractnet.test'">
     <configuration name="AgreementRepositoryTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -90,6 +220,27 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="InvokeQueryCfpTransaction" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;ContractNetTest$InvokeQueryCfpTransaction&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="Tests in 'contractnet.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -114,6 +265,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.Tests in 'contractnet.test'" />
+        <item itemvalue="Gradle.InvokeQueryCfpTransaction" />
         <item itemvalue="Gradle.AgreementTest" />
         <item itemvalue="Gradle.AgreementRepositoryTest" />
       </list>

@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
 
 import com.owlike.genson.Genson;
 import org.hyperledger.fabric.contract.Context;
@@ -26,7 +27,7 @@ import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
     @Transaction()
     public void initLedger(final Context ctx) {
         ChaincodeStub stub = ctx.getStub();
-        Cfp cfp = new Cfp("cfp001", "Paolo", "Called");
+        CallForProposal cfp = new CallForProposal("cfp001", "Paolo", "Called", new ArrayList<Partecipant>());
 
         String cfpState = genson.serialize(cfp);
         stub.putStringState("cfp001", cfpState);
@@ -34,7 +35,7 @@ import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 
 
     @Transaction()
-    public Cfp getCfp(final Context ctx, final String key) {
+    public CallForProposal getCfp(final Context ctx, final String key) {
         ChaincodeStub stub = ctx.getStub();
         String cfpState = stub.getStringState(key);
 
@@ -44,14 +45,14 @@ import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
             throw new ChaincodeException(errorMessage, "Cfp not found");
         }
 
-        Cfp cfp = genson.deserialize(cfpState, Cfp.class);
+        CallForProposal cfp = genson.deserialize(cfpState, CallForProposal.class);
 
         return cfp;
     }
 
     @Transaction()
-    public Cfp createCfp(final Context ctx, final String key, final String id, final String initiator,
-                                    final String status) {
+    public CallForProposal createCfp(final Context ctx, final String key, final String id, final String initiator,
+                                     final String status) {
         ChaincodeStub stub = ctx.getStub();
 
         String cfpState = stub.getStringState(key);
@@ -61,7 +62,7 @@ import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
             throw new ChaincodeException(errorMessage, "Cfp already exists");
         }
 
-        Cfp cfp = new Cfp(id, initiator, status);
+        CallForProposal cfp = new CallForProposal(id, initiator, status, new ArrayList<Partecipant>());
         cfpState = genson.serialize(cfp);
         stub.putStringState(key, cfpState);
 
@@ -70,7 +71,7 @@ import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 
 
     @Transaction()
-    public Cfp changeCfpStatus(final Context ctx, final String key, final String newStatus) {
+    public CallForProposal changeCfpStatus(final Context ctx, final String key, final String newStatus) {
         ChaincodeStub stub = ctx.getStub();
 
         String cfpState = stub.getStringState(key);
@@ -81,14 +82,63 @@ import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
             throw new ChaincodeException(errorMessage, "Cfp not found");
         }
 
-        Cfp cfp = genson.deserialize(cfpState, Cfp.class);
+        CallForProposal cfp = genson.deserialize(cfpState, CallForProposal.class);
 
-        Cfp newCfp = new Cfp(cfp.getId(), cfp.getInitiator(), newStatus);
+        CallForProposal newCfp = new CallForProposal(cfp.getId(), cfp.getInitiator(), newStatus, cfp.getPartecipants());
         String newCfpState = genson.serialize(newCfp);
         stub.putStringState(key, newCfpState);
 
         return newCfp;
     }
+
+    @Transaction()
+    public CallForProposal addPartecipant(final Context ctx, final String key, final String name) {
+        ChaincodeStub stub = ctx.getStub();
+
+        String cfpState = stub.getStringState(key);
+
+        if (cfpState.isEmpty()) {
+            String errorMessage = String.format("Cfp %s does not exist", key);
+            System.out.println(errorMessage);
+            throw new ChaincodeException(errorMessage, "Cfp not found");
+        }
+
+        CallForProposal cfp = genson.deserialize(cfpState, CallForProposal.class);
+
+        cfp.getPartecipants().add(new Partecipant(name, "waiting"));
+
+        CallForProposal newCfp = new CallForProposal(cfp.getId(), cfp.getInitiator(), cfp.getStatus(), cfp.getPartecipants());
+        String newCfpState = genson.serialize(newCfp);
+        stub.putStringState(key, newCfpState);
+
+        return newCfp;
+    }
+
+    @Transaction()
+    public CallForProposal call(final Context ctx, final String key) {
+        ChaincodeStub stub = ctx.getStub();
+
+        String cfpState = stub.getStringState(key);
+
+        if (cfpState.isEmpty()) {
+            String errorMessage = String.format("Cfp %s does not exist", key);
+            System.out.println(errorMessage);
+            throw new ChaincodeException(errorMessage, "Cfp not found");
+        }
+
+        CallForProposal cfp = genson.deserialize(cfpState, CallForProposal.class);
+
+        for(Partecipant p: cfp.getPartecipants()){
+            p.setState("called");
+        }
+
+        CallForProposal newCfp = new CallForProposal(cfp.getId(), cfp.getInitiator(), cfp.getStatus(), cfp.getPartecipants());
+        String newCfpState = genson.serialize(newCfp);
+        stub.putStringState(key, newCfpState);
+
+        return newCfp;
+    }
+
     
     /**
      * Retrieves all cfps from the ledger.
@@ -100,7 +150,7 @@ import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
     public String GetAllCfps(final Context ctx) {
         ChaincodeStub stub = ctx.getStub();
 
-        List<Cfp> queryResults = new ArrayList<Cfp>();
+        List<CallForProposal> queryResults = new ArrayList<CallForProposal>();
 
         // To retrieve all assets from the ledger use getStateByRange with empty startKey & endKey.
         // Giving empty startKey & endKey is interpreted as all the keys from beginning to end.
@@ -109,7 +159,7 @@ import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
         QueryResultsIterator<KeyValue> results = stub.getStateByRange("", "");
 
         for (KeyValue result: results) {
-            Cfp cfp = genson.deserialize(result.getStringValue(), Cfp.class);
+            CallForProposal cfp = genson.deserialize(result.getStringValue(), CallForProposal.class);
             queryResults.add(cfp);
             System.out.println(cfp.toString());
         }
