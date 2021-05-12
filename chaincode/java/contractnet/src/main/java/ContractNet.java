@@ -139,23 +139,39 @@ import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
         return newCfp;
     }
 
-    
-    /**
-     * Retrieves all cfps from the ledger.
-     *
-     * @param ctx the transaction context
-     * @return array of cfps found on the ledger
-     */
+    @Transaction()
+    public CallForProposal callResponse(final Context ctx, final String key, final String partecipantName, final String response) {
+        ChaincodeStub stub = ctx.getStub();
+
+        String cfpState = stub.getStringState(key);
+
+        if (cfpState.isEmpty()) {
+            String errorMessage = String.format("Cfp %s does not exist", key);
+            System.out.println(errorMessage);
+            throw new ChaincodeException(errorMessage, "Cfp not found");
+        }
+
+        CallForProposal cfp = genson.deserialize(cfpState, CallForProposal.class);
+        for(Partecipant p: cfp.getPartecipants()){
+            if(p.getName().equals(partecipantName)){
+                p.setState(response);
+            }
+        }
+
+        CallForProposal newCfp = new CallForProposal(cfp.getId(), cfp.getInitiator(), cfp.getStatus(), cfp.getPartecipants());
+        String newCfpState = genson.serialize(newCfp);
+        stub.putStringState(key, newCfpState);
+
+        return newCfp;
+    }
+
+
     @Transaction(intent = Transaction.TYPE.EVALUATE)
     public String GetAllCfps(final Context ctx) {
         ChaincodeStub stub = ctx.getStub();
 
         List<CallForProposal> queryResults = new ArrayList<CallForProposal>();
 
-        // To retrieve all assets from the ledger use getStateByRange with empty startKey & endKey.
-        // Giving empty startKey & endKey is interpreted as all the keys from beginning to end.
-        // As another example, if you use startKey = 'asset0', endKey = 'asset9' ,
-        // then getStateByRange will retrieve asset with keys between asset0 (inclusive) and asset9 (exclusive) in lexical order.
         QueryResultsIterator<KeyValue> results = stub.getStateByRange("", "");
 
         for (KeyValue result: results) {
