@@ -1,7 +1,6 @@
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Iterator;
 
 import com.owlike.genson.Genson;
 import org.hyperledger.fabric.contract.Context;
@@ -27,7 +26,7 @@ import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
     @Transaction()
     public void initLedger(final Context ctx) {
         ChaincodeStub stub = ctx.getStub();
-        CallForProposal cfp = new CallForProposal("cfp001", "Paolo", "Called", new ArrayList<Partecipant>());
+        CallForProposal cfp = new CallForProposal();
 
         String cfpState = genson.serialize(cfp);
         stub.putStringState("cfp001", cfpState);
@@ -52,7 +51,7 @@ import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 
     @Transaction()
     public CallForProposal createCfp(final Context ctx, final String key, final String id, final String initiator,
-                                     final String status) {
+                                     final String task, final String status) {
         ChaincodeStub stub = ctx.getStub();
 
         String cfpState = stub.getStringState(key);
@@ -62,7 +61,7 @@ import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
             throw new ChaincodeException(errorMessage, "Cfp already exists");
         }
 
-        CallForProposal cfp = new CallForProposal(id, initiator, status, new ArrayList<Partecipant>());
+        CallForProposal cfp = new CallForProposal();
         cfpState = genson.serialize(cfp);
         stub.putStringState(key, cfpState);
 
@@ -84,81 +83,7 @@ import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 
         CallForProposal cfp = genson.deserialize(cfpState, CallForProposal.class);
 
-        CallForProposal newCfp = new CallForProposal(cfp.getId(), cfp.getInitiator(), newStatus, cfp.getPartecipants());
-        String newCfpState = genson.serialize(newCfp);
-        stub.putStringState(key, newCfpState);
-
-        return newCfp;
-    }
-
-    @Transaction()
-    public CallForProposal addPartecipant(final Context ctx, final String key, final String name) {
-        ChaincodeStub stub = ctx.getStub();
-
-        String cfpState = stub.getStringState(key);
-
-        if (cfpState.isEmpty()) {
-            String errorMessage = String.format("Cfp %s does not exist", key);
-            System.out.println(errorMessage);
-            throw new ChaincodeException(errorMessage, "Cfp not found");
-        }
-
-        CallForProposal cfp = genson.deserialize(cfpState, CallForProposal.class);
-
-        cfp.getPartecipants().add(new Partecipant(name, "waiting"));
-
-        CallForProposal newCfp = new CallForProposal(cfp.getId(), cfp.getInitiator(), cfp.getStatus(), cfp.getPartecipants());
-        String newCfpState = genson.serialize(newCfp);
-        stub.putStringState(key, newCfpState);
-
-        return newCfp;
-    }
-
-    @Transaction()
-    public CallForProposal call(final Context ctx, final String key) {
-        ChaincodeStub stub = ctx.getStub();
-
-        String cfpState = stub.getStringState(key);
-
-        if (cfpState.isEmpty()) {
-            String errorMessage = String.format("Cfp %s does not exist", key);
-            System.out.println(errorMessage);
-            throw new ChaincodeException(errorMessage, "Cfp not found");
-        }
-
-        CallForProposal cfp = genson.deserialize(cfpState, CallForProposal.class);
-
-        for(Partecipant p: cfp.getPartecipants()){
-            p.setState("called");
-        }
-
-        CallForProposal newCfp = new CallForProposal(cfp.getId(), cfp.getInitiator(), cfp.getStatus(), cfp.getPartecipants());
-        String newCfpState = genson.serialize(newCfp);
-        stub.putStringState(key, newCfpState);
-
-        return newCfp;
-    }
-
-    @Transaction()
-    public CallForProposal callResponse(final Context ctx, final String key, final String partecipantName, final String response) {
-        ChaincodeStub stub = ctx.getStub();
-
-        String cfpState = stub.getStringState(key);
-
-        if (cfpState.isEmpty()) {
-            String errorMessage = String.format("Cfp %s does not exist", key);
-            System.out.println(errorMessage);
-            throw new ChaincodeException(errorMessage, "Cfp not found");
-        }
-
-        CallForProposal cfp = genson.deserialize(cfpState, CallForProposal.class);
-        for(Partecipant p: cfp.getPartecipants()){
-            if(p.getName().equals(partecipantName)){
-                p.setState(response);
-            }
-        }
-
-        CallForProposal newCfp = new CallForProposal(cfp.getId(), cfp.getInitiator(), cfp.getStatus(), cfp.getPartecipants());
+        CallForProposal newCfp = new CallForProposal();
         String newCfpState = genson.serialize(newCfp);
         stub.putStringState(key, newCfpState);
 

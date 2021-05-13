@@ -1,50 +1,41 @@
 import com.owlike.genson.annotation.JsonProperty;
-import org.hyperledger.fabric.contract.Context;
 import org.hyperledger.fabric.contract.annotation.DataType;
 import org.hyperledger.fabric.contract.annotation.Property;
-import org.hyperledger.fabric.contract.annotation.Transaction;
-import org.hyperledger.fabric.shim.ChaincodeException;
-import org.hyperledger.fabric.shim.ChaincodeStub;
+import org.json.JSONObject;
+import org.json.JSONPropertyIgnore;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
-import java.util.List;
 import java.util.ArrayList;
 
+import ledgerapi.State;
+
 @DataType
-public final class CallForProposal {
+public final class CallForProposal extends State {
 
     @Property()
-    private final String id;
+    private String state="";
 
-    @Property()
-    private final String initiator;
-
-    @Property()
-    private final String status;
-
-    @Property()
-    private final ArrayList<Partecipant> partecipants;
-
-    public String getId() {
-        return id;
+    public String getState() {
+        return state;
     }
 
-    public String getInitiator() {
-        return initiator;
+    public CallForProposal setState(String state) {
+        this.state = state;
+        return this;
     }
 
-    public String getStatus() {
-        return status;
+    public static CallForProposal deserialize(byte[] data) {
+        JSONObject json = new JSONObject(new String(data, UTF_8));
+
+        String state = json.getString("state");
+        return createInstance(state);
     }
 
-    public ArrayList<Partecipant> getPartecipants() {
-        return partecipants;
+    public static byte[] serialize(CallForProposal cfp) {
+        return State.serialize(cfp);
     }
 
-    public CallForProposal(@JsonProperty("id") final String id, @JsonProperty("initiator") final String initiator,
-                           @JsonProperty("status") final String status, @JsonProperty("partecipants") final ArrayList<Partecipant> partecipants) {
-        this.id = id;
-        this.initiator = initiator;
-        this.status = status;
-        this.partecipants = partecipants;
+    public static CallForProposal createInstance(String state) {
+        return new CallForProposal().setState(state);
     }
 }

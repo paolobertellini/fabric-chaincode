@@ -5,18 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80160afe-6c7e-4e2e-8ef1-990f1e9da4dc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CallForProposalList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ContractNetContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ledgerapi/State.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ledgerapi/StateDeserializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ledgerapi/StateList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ledgerapi/impl/StateListImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ContractNet.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ContractNet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CallForProposal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CallForProposal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ContractNet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ContractNet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../network/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../network/scripts/deployCC.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/scripts/deployCC.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CallForProposalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CallForProposalTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,12 +60,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
     </key>
