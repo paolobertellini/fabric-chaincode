@@ -3,7 +3,7 @@ plugins {
     id 'java-library-distribution'
 }
 
-group 'org.example'
+group 'org.contractnet'
 version '1.0'
 
 repositories {
