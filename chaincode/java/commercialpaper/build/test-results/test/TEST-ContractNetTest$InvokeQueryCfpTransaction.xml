@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ContractNetTest$InvokeQueryCfpTransaction" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-05-11T08:44:31" hostname="paolo" time="0.872">
+  <properties/>
+  <testcase name="whenCfpExists()" classname="ContractNetTest$InvokeQueryCfpTransaction" time="0.859"/>
+  <testcase name="whenCarDoesNotExist()" classname="ContractNetTest$InvokeQueryCfpTransaction" time="0.01"/>
+  <system-out><![CDATA[Cfp ARG000 does not exist
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
