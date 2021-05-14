@@ -12,7 +12,7 @@ Inspired from [Create java chaincode - medium tutorial](https://medium.com/coinm
 `./network.sh createChannel`
 
 3. Deploy the chaincode
-`./network.sh deployCC -ccn agreements -ccp ../chaincode/java/agreements/ -ccl java -cci initLedger`
+`./network.sh deployCC -ccn contractnet -ccp ../chaincode/java/contractnet/ -ccl java -cci initLedger -ccv 1.0 -ccs 1`
 
 4. Stop the network
 `./network.sh down`
@@ -45,5 +45,6 @@ Org 2 <br>
 ## Interacting with the network
 
 - query `peer chaincode  query -C mychannel -n agreements -c '{"Args":["getAgreement", "ARG001"]}'`
-- invoke `peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile "${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" -C mychannel -n agreements --peerAddresses localhost:7051 --tlsRootCertFiles "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt" --peerAddresses localhost:9051 --tlsRootCertFiles "${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt" -c '{"function":"createAgreement","Args":["ARG002","paolo","andrea","open"]}'
+- invoke `peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile "${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" -C mychannel -n contractnet --peerAddresses localhost:7051 --tlsRootCertFiles "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt" --peerAddresses localhost:9051 --tlsRootCertFiles "${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt" -c '{"function":"create","Args":["1","paolo","Create random numbers"]}'
 `
+

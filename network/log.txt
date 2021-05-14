@@ -1,2 +1,2 @@
 Committed chaincode definition for chaincode 'contractnet' on channel 'mychannel':
-Version: 7.0, Sequence: 7, Endorsement Plugin: escc, Validation Plugin: vscc, Approvals: [Org1MSP: true, Org2MSP: true]
+Version: 12.0, Sequence: 12, Endorsement Plugin: escc, Validation Plugin: vscc, Approvals: [Org1MSP: true, Org2MSP: true]

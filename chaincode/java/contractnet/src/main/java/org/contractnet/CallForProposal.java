@@ -4,13 +4,15 @@
 
 package org.contractnet;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
-
 import org.contractnet.ledgerapi.State;
 import org.hyperledger.fabric.contract.annotation.DataType;
 import org.hyperledger.fabric.contract.annotation.Property;
 import org.json.JSONObject;
 import org.json.JSONPropertyIgnore;
+
+import java.util.ArrayList;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 @DataType()
 public class CallForProposal extends State {
@@ -71,6 +73,9 @@ public class CallForProposal extends State {
     @Property()
     private String task;
 
+    @Property()
+    private ArrayList<Partecipant> partecipants;
+
     public CallForProposal() {
         super();
     }
@@ -107,9 +112,21 @@ public class CallForProposal extends State {
         return this;
     }
 
+    public ArrayList<Partecipant> getPartecipants() {
+        return partecipants;
+    }
+
+    public void setPartecipants(ArrayList<Partecipant> partecipants) {
+        this.partecipants = partecipants;
+    }
+
+    public void addPartecipant(Partecipant partecipant) {
+        this.partecipants.add(partecipant);
+    }
+
     @Override
     public String toString() {
-        return "Paper::" + this.key + "   " + this.getId() + " " + getInitiator() + " " + getTask() + " " + getState();
+        return "CFP:" + this.key + "   " + this.getId() + " " + getInitiator() + " " + getTask() + " " + getState() + " " + getPartecipants();
     }
 
     /**

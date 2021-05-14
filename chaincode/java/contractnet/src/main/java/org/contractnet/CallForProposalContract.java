@@ -3,32 +3,23 @@ SPDX-License-Identifier: Apache-2.0
 */
 package org.contractnet;
 
-import java.util.logging.Logger;
-
 import org.contractnet.ledgerapi.State;
 import org.hyperledger.fabric.contract.Context;
 import org.hyperledger.fabric.contract.ContractInterface;
-import org.hyperledger.fabric.contract.annotation.Contact;
-import org.hyperledger.fabric.contract.annotation.Contract;
-import org.hyperledger.fabric.contract.annotation.Default;
-import org.hyperledger.fabric.contract.annotation.Info;
-import org.hyperledger.fabric.contract.annotation.License;
-import org.hyperledger.fabric.contract.annotation.Transaction;
+import org.hyperledger.fabric.contract.annotation.*;
 import org.hyperledger.fabric.shim.ChaincodeStub;
 
-/**
- * A custom context provides easy access to list of all commercial callForProposals
- */
+import java.util.logging.Logger;
+
 
 /**
- * Define commercial callForProposal smart contract by extending Fabric Contract class
+ * Define callForProposal smart contract by extending Fabric Contract class
  *
  */
 @Contract(name = "org.contractnet.callForProposal", info = @Info(title = "Contract net protocol", description = "", version = "0.0.1", license = @License(name = "SPDX-License-Identifier: ", url = ""), contact = @Contact(email = "java-contract@example.com", name = "java-contract", url = "http://java-contract.me")))
 @Default
 public class CallForProposalContract implements ContractInterface {
 
-    // use the classname for the logger, this way you can refactor
     private final static Logger LOG = Logger.getLogger(org.contractnet.CallForProposalContract.class.getName());
 
     @Override
@@ -40,9 +31,6 @@ public class CallForProposalContract implements ContractInterface {
 
     }
 
-    /**
-     * Define a custom context for commercial callForProposal
-     */
 
     /**
      * Instantiate to perform any setup of the ledger that might be required.
@@ -51,8 +39,6 @@ public class CallForProposalContract implements ContractInterface {
      */
     @Transaction
     public void instantiate(CallForProposalContext ctx) {
-        // No implementation required with this example
-        // It could be where data migration is performed, if necessary
         LOG.info("No data migration to perform");
     }
 
@@ -60,11 +46,9 @@ public class CallForProposalContract implements ContractInterface {
      * Create a new callForProposal
      *
      * @param {Context} ctx the transaction context
-     * @param {String} issuer commercial callForProposal issuer
-     * @param {Integer} id callForProposal number for this issuer
-     * @param {String} task callForProposal issue date
-     * @param {String} maturityDateTime callForProposal maturity date
-     * @param {Integer} faceValue face value of callForProposal
+     * @param {String} initiator callForProposal initiator
+     * @param {String} id callForProposal id
+     * @param {String} task callForProposal task
      */
     @Transaction
     public CallForProposal create(CallForProposalContext ctx, String initiator, String id, String task) {
@@ -78,13 +62,61 @@ public class CallForProposalContract implements ContractInterface {
         callForProposal.setCreated();
 
         System.out.println(callForProposal);
-        // Add the callForProposal to the list of all similar commercial callForProposals in the ledger
+        // Add the callForProposal to the list of all similar callForProposals in the ledger
         // world state
         ctx.callForProposalList.addCallForProposal(callForProposal);
 
         // Must return a serialized callForProposal to caller of smart contract
         return callForProposal;
     }
+
+    /**
+     * Create a new partecipant
+     *
+     * @param {Context} ctx the transaction context
+     * @param {String} name Partecipant name
+     */
+    @Transaction
+    public Partecipant createPartecipant(CallForProposalContext ctx, String name) {
+
+        System.out.println(ctx);
+
+        Partecipant partecipant = Partecipant.createInstance(name, "");
+        partecipant.setWaiting();
+
+        System.out.println(partecipant);
+        ctx.partecipantList.addPartecipant(partecipant);
+
+        return partecipant;
+    }
+
+
+    /**
+     * Create a new partecipant
+     *
+     * @param {Context} ctx the transaction context
+     * @param {String} name Partecipant name
+     */
+    @Transaction
+    public CallForProposal addPartecipant(CallForProposalContext ctx, String id, String name) {
+
+        System.out.println(ctx);
+
+        String callForProposalKey = State.makeKey(new String[] { id });
+        CallForProposal callForProposal = ctx.callForProposalList.getCallForProposal(callForProposalKey);
+
+        String partecipantKey = State.makeKey(new String[] { name });
+        Partecipant partecipant = ctx.partecipantList.getPartecipant(partecipantKey);
+
+
+        partecipant.setCalled();
+        
+        System.out.println(callForProposal);
+        System.out.println(partecipant);
+
+        return callForProposal;
+    }
+
 
     /**
      * Buy commercial callForProposal
@@ -138,8 +170,7 @@ public class CallForProposalContract implements ContractInterface {
      * @param {String} redeemDateTime time callForProposal was redeemed
      */
     @Transaction
-    public CallForProposal redeem(CallForProposalContext ctx, String issuer, String id, String redeemingOwner,
-            String redeemDateTime) {
+    public CallForProposal call(CallForProposalContext ctx, String id, String initiator) {
 
         String callForProposalKey = CallForProposal.makeKey(new String[] { id });
 
@@ -147,15 +178,14 @@ public class CallForProposalContract implements ContractInterface {
 
         // Check callForProposal is not REDEEMED
         if (callForProposal.isEnded()) {
-            throw new RuntimeException("CallForProposal " + issuer + id + " already redeemed");
+            throw new RuntimeException("CallForProposal " + id + " is ended");
         }
 
         // Verify that the redeemer owns the commercial callForProposal before redeeming it
-        if (callForProposal.getInitiator().equals(redeemingOwner)) {
-            callForProposal.setInitiator(callForProposal.getInitiator());
-            callForProposal.isEnded();
+        if (callForProposal.getInitiator().equals(initiator)) {
+            callForProposal.setCalling();
         } else {
-            throw new RuntimeException("Redeeming owner does not own callForProposal" + issuer + id);
+            throw new RuntimeException("Call for proposal is not initiated by" + initiator);
         }
 
         ctx.callForProposalList.updateCallForProposal(callForProposal);
