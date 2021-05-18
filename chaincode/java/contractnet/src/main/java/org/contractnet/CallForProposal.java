@@ -9,6 +9,7 @@ import org.hyperledger.fabric.contract.annotation.DataType;
 import org.hyperledger.fabric.contract.annotation.Property;
 import org.json.JSONPropertyIgnore;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -53,7 +54,7 @@ public final class CallForProposal {
     }
 
     @Property()
-    private List<Partecipant> partecipants;
+    private List<String> partecipants = new ArrayList<>();
 
     @Property()
     private final String initiator;
@@ -73,19 +74,17 @@ public final class CallForProposal {
         return state;
     }
 
-    public List<Partecipant> getPartecipants() {
+    public List<String> getPartecipants() {
         return partecipants;
     }
 
-    public void addPartecipant(Partecipant partecipant) {
-        this.partecipants.add(partecipant);
-    }
 
     public CallForProposal(@JsonProperty("initiator") final String initiator, @JsonProperty("task") final String task,
-                           @JsonProperty("state") final String state) {
+                           @JsonProperty("state") final String state, @JsonProperty("partecipants") final List<String> partecipants) {
         this.initiator = initiator;
         this.task = task;
         this.state = state;
+        this.partecipants = partecipants;
     }
 
     @Override
@@ -112,6 +111,6 @@ public final class CallForProposal {
     @Override
     public String toString() {
         return this.getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()) + " [initiator=" + initiator + ", task="
-                + task + ", state=" + state + "]";
+                + task + ", state=" + state + ", partecipants=" + partecipants + "]";
     }
 }

@@ -5,56 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d608e093-4465-4679-a409-d211c1838ae4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/org/contractnet/CallForProposalContract$FabCallForProposalErrors.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/org/contractnet/CallForProposalQueryResult.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/org/contractnet/Partecipant.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/org/contractnet/PartecipanyQueryResult.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/contractnet/CallForProposalQueryResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/contractnet/PartecipanyQueryResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../papernet/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries-with-intellij-classes.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/contractnet/CallForProposal.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/contractnet/CallForProposal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/contractnet/CallForProposalContext.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/contractnet/CallForProposalContract.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/contractnet/CallForProposalContract.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/contractnet/CallForProposalList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/contractnet/ledgerapi/State.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/contractnet/ledgerapi/StateDeserializer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/contractnet/ledgerapi/StateList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/contractnet/ledgerapi/impl/StateListImpl.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/install/contractnet/contractnet-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/install/contractnet/contractnet-1.0.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/contractnet-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/contractnet-1.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/contractnet/CallForProposal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/contractnet/CallForProposal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/contractnet/CallForProposalContext.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/contractnet/CallForProposalContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/contractnet/CallForProposalContract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/contractnet/CallForProposalList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/contractnet/Partecipant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/contractnet/Partecipant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/contractnet/PartecipantList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/contractnet/ledgerapi/State.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/contractnet/ledgerapi/StateDeserializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/contractnet/ledgerapi/StateList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/contractnet/ledgerapi/impl/StateListImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../network/channel-artifacts/mychannel.block" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/channel-artifacts/mychannel.block" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../network/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/ca/ca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../../network/organizations/ordererOrganizations/example.com/ca/ca.example.com-cert.pem" afterDir="false" />

@@ -73,6 +73,12 @@ public final class CallForProposalContract implements ContractInterface {
                 "{ \"initiator\": \"John\", \"task\": \"Computations\" }",
                 "{ \"initiator\": \"Frank\", \"task\": \"Find best path\" }",
         };
+        String[] partecipantData = {
+                "{ \"name\": \"partecipant 1\" }",
+                "{ \"name\": \"partecipant 2\" }",
+                "{ \"name\": \"partecipant 3\" }",
+                "{ \"name\": \"partecipant 4\" }",
+        };
 
         for (int i = 0; i < callForProposalData.length; i++) {
             String key = String.format("cfp%d", i);
@@ -80,6 +86,13 @@ public final class CallForProposalContract implements ContractInterface {
             CallForProposal callForProposal = genson.deserialize(callForProposalData[i], CallForProposal.class);
             String callForProposalState = genson.serialize(callForProposal);
             stub.putStringState(key, callForProposalState);
+        }
+        for (int i = 0; i < partecipantData.length; i++) {
+            String key = String.format("prt%d", i);
+
+            Partecipant partecipant = genson.deserialize(partecipantData[i], Partecipant.class);
+            String partecipantState = genson.serialize(partecipant);
+            stub.putStringState(key, partecipantState);
         }
     }
 
@@ -95,7 +108,7 @@ public final class CallForProposalContract implements ContractInterface {
             throw new ChaincodeException(errorMessage, FabCallForProposalErrors.CallForProposal_ALREADY_EXISTS.toString());
         }
 
-        CallForProposal callForProposal = new CallForProposal(initiator, task, state);
+        CallForProposal callForProposal = new CallForProposal(initiator, task, state, new ArrayList<String>());
         callForProposalState = genson.serialize(callForProposal);
         stub.putStringState(key, callForProposalState);
 
@@ -120,28 +133,28 @@ public final class CallForProposalContract implements ContractInterface {
         return partecipant;
     }
 
+    @Transaction()
+    public String testFunction (final Context ctx, final String sciopa) {
+        return ctx.getStub().getCreator().
+    }
+
 
     @Transaction()
-    public String callAllPartecipants(final Context ctx, final String key) {
+    public CallForProposal callAllPartecipants(final Context ctx, final String key) {
         ChaincodeStub stub = ctx.getStub();
 
         String callForProposalState = stub.getStringState(key);
-
         if (callForProposalState.isEmpty()) {
             String errorMessage = String.format("CallForProposal %s does not exist", key);
             System.out.println(errorMessage);
             throw new ChaincodeException(errorMessage, FabCallForProposalErrors.CallForProposal_NOT_FOUND.toString());
         }
 
-        CallForProposal callForProposal = genson.deserialize(callForProposalState, CallForProposal.class);
-
-        CallForProposal newCallForProposal = new CallForProposal(callForProposal.getInitiator(), callForProposal.getTask(), callForProposal.getState());
-        newCallForProposal.setCalling();
-
-
         final String startKey = "prt1";
         final String endKey = "prt99";
 
+        List<PartecipanyQueryResult> queryResults = new ArrayList<>();
+        List<String> partecipants = new ArrayList<>();
         QueryResultsIterator<KeyValue> results = stub.getStateByRange(startKey, endKey);
 
         for (KeyValue result: results) {
@@ -149,25 +162,24 @@ public final class CallForProposalContract implements ContractInterface {
             String partecipantState = stub.getStringState(result.getKey());
 
             Partecipant partecipant = genson.deserialize(partecipantState, Partecipant.class);
+            queryResults.add(new PartecipanyQueryResult(result.getKey(), partecipant));
 
             Partecipant newPartecipant = new Partecipant(partecipant.getName(), Partecipant.CALLED);
 
             String newPartecipantState = genson.serialize(newPartecipant);
             stub.putStringState(result.getKey(), newPartecipantState);
+            if (newPartecipant.isWaiting()) {
+                partecipants.add(newPartecipant.getName());
+            }
 
-//            newCallForProposal.addPartecipant(newPartecipant);
-
-//            Partecipant partecipant = genson.deserialize(result.getStringValue(), Partecipant.class);
-//            Partecipant newPartecipant = new Partecipant(partecipant.getName());
-//            partecipant.setCalled();
-//            String newPartecipantState = genson.serialize(newPartecipant);
-//            stub.putStringState(key, newPartecipantState);
         }
 
+        CallForProposal callForProposal = genson.deserialize(callForProposalState, CallForProposal.class);
+        CallForProposal newCallForProposal = new CallForProposal(callForProposal.getInitiator(), callForProposal.getTask(), callForProposal.CALLING, partecipants);
         String newCallForProposalState = genson.serialize(newCallForProposal);
         stub.putStringState(key, newCallForProposalState);
 
-        return "ok";
+        return newCallForProposal;
     }
 
 
@@ -241,10 +253,13 @@ public final class CallForProposalContract implements ContractInterface {
             System.out.println(errorMessage);
             throw new ChaincodeException(errorMessage, FabCallForProposalErrors.CallForProposal_NOT_FOUND.toString());
         }
+        List<String> partecipants = new ArrayList<>();
+        partecipants.add("p1");
+        partecipants.add("p2");
 
         CallForProposal callForProposal = genson.deserialize(callForProposalState, CallForProposal.class);
 
-        CallForProposal newCallForProposal = new CallForProposal(callForProposal.getInitiator(), newTask, callForProposal.getState());
+        CallForProposal newCallForProposal = new CallForProposal(callForProposal.getInitiator(), callForProposal.getTask(), newTask, partecipants);
         String newCallForProposalState = genson.serialize(newCallForProposal);
         stub.putStringState(key, newCallForProposalState);
 
