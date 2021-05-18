@@ -1,7 +1,16 @@
-# Agreement network
+# Fabric chaincode
 A Hyperledger Fabric network with a java chaincode
 
 Inspired from [Create java chaincode - medium tutorial](https://medium.com/coinmonks/how-to-create-a-java-chaincode-and-deploy-in-a-hyperledger-fabric-2-network-65199e5f645d) 
+
+## Chaincodes
+
+- fabcar
+- contractnet
+- contractnet with composite key
+- commercial paper
+
+# Contractnet
 
 ## Setup
 
