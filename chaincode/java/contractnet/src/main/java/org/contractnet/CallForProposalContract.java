@@ -133,11 +133,6 @@ public final class CallForProposalContract implements ContractInterface {
         return partecipant;
     }
 
-    @Transaction()
-    public String testFunction (final Context ctx, final String sciopa) {
-        return ctx.getStub().getCreator().
-    }
-
 
     @Transaction()
     public CallForProposal callAllPartecipants(final Context ctx, final String key) {
