@@ -1,36 +1,25 @@
 /*
- * SPDX-License-Nameentifier: Apache-2.0
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 package org.contractnet;
 
-import org.contractnet.ledgerapi.State;
+import com.owlike.genson.annotation.JsonProperty;
 import org.hyperledger.fabric.contract.annotation.DataType;
 import org.hyperledger.fabric.contract.annotation.Property;
-import org.json.JSONObject;
 import org.json.JSONPropertyIgnore;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
+import java.util.Objects;
 
 @DataType()
-public class Partecipant extends State {
+public final class Partecipant {
 
-    // Enumerate partecipant state values
     public final static String WAITING = "WAITING";
     public final static String CALLED = "CALLED";
-    public final static String ENDED = "ENDED";
+    public final static String WORKING = "WORKING";
 
     @Property()
     private String state="";
-
-    public String getState() {
-        return state;
-    }
-
-    public Partecipant setState(String state) {
-        this.state = state;
-        return this;
-    }
 
     @JSONPropertyIgnore()
     public boolean isWaiting() {
@@ -43,8 +32,8 @@ public class Partecipant extends State {
     }
 
     @JSONPropertyIgnore()
-    public boolean isEnded() {
-        return this.state.equals(Partecipant.ENDED);
+    public boolean isWorking() {
+        return this.state.equals(Partecipant.WORKING);
     }
 
     public Partecipant setWaiting() {
@@ -57,61 +46,52 @@ public class Partecipant extends State {
         return this;
     }
 
-    public Partecipant setEnded() {
-        this.state = Partecipant.ENDED;
+    public Partecipant setWorking() {
+        this.state = Partecipant.WORKING;
         return this;
     }
 
     @Property()
-    private String name;
+    private final String name;
 
-    public Partecipant() {
-        super();
-    }
-
-    public Partecipant setKey() {
-        this.key = State.makeKey(new String[] { this.name });
-        return this;
-    }
 
     public String getName() {
         return name;
     }
 
-    public Partecipant setName(String name) {
-        this.name = name;
-        return this;
+
+    public String getState() {
+        return state;
     }
 
+    public Partecipant(@JsonProperty("name") final String name, @JsonProperty("state") final String state) {
+        this.name = name;
+        this.state = state;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if ((obj == null) || (getClass() != obj.getClass())) {
+            return false;
+        }
+
+        Partecipant other = (Partecipant) obj;
+
+        return Objects.deepEquals(new String[] {getName(), getState()},
+                new String[] {other.getName(), other.getState()});
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getState());
+    }
 
     @Override
     public String toString() {
-        return "Paper::" + this.key + "   " + this.getName() + " " + getState();
+        return this.getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()) + " [name=" + name + ", state=" + state + "]";
     }
-
-    /**
-     * Deserialize a state data to partecipant
-     *
-     * @param {Buffer} data to form back into the object
-     */
-    public static Partecipant deserialize(byte[] data) {
-        JSONObject json = new JSONObject(new String(data, UTF_8));
-
-        String name = json.getString("name");
-        String state = json.getString("state");
-        return createInstance(name, state);
-    }
-
-    public static byte[] serialize(Partecipant paper) {
-        return State.serialize(paper);
-    }
-
-    /**
-     * Factory method to create a partecipant object
-     */
-    public static Partecipant createInstance(String name, String state) {
-        return new Partecipant().setName(name).setKey().setState(state);
-    }
-
-
 }

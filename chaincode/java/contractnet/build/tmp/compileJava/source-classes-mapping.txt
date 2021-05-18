@@ -1,20 +1,11 @@
-org/contractnet/ledgerapi/State.java
- org.contractnet.ledgerapi.State
-org/contractnet/ledgerapi/StateDeserializer.java
- org.contractnet.ledgerapi.StateDeserializer
-org/contractnet/PartecipantList.java
- org.contractnet.PartecipantList
-org/contractnet/ledgerapi/impl/StateListImpl.java
- org.contractnet.ledgerapi.impl.StateListImpl
+org/contractnet/CallForProposalQueryResult.java
+ org.contractnet.CallForProposalQueryResult
+org/contractnet/PartecipanyQueryResult.java
+ org.contractnet.PartecipanyQueryResult
 org/contractnet/Partecipant.java
  org.contractnet.Partecipant
-org/contractnet/CallForProposalList.java
- org.contractnet.CallForProposalList
 org/contractnet/CallForProposal.java
  org.contractnet.CallForProposal
-org/contractnet/CallForProposalContext.java
- org.contractnet.CallForProposalContext
-org/contractnet/ledgerapi/StateList.java
- org.contractnet.ledgerapi.StateList
 org/contractnet/CallForProposalContract.java
  org.contractnet.CallForProposalContract
+ org.contractnet.CallForProposalContract$FabCallForProposalErrors

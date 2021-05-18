@@ -4,35 +4,23 @@
 
 package org.contractnet;
 
-import org.contractnet.ledgerapi.State;
+import com.owlike.genson.annotation.JsonProperty;
 import org.hyperledger.fabric.contract.annotation.DataType;
 import org.hyperledger.fabric.contract.annotation.Property;
-import org.json.JSONObject;
 import org.json.JSONPropertyIgnore;
 
-import java.util.ArrayList;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
+import java.util.List;
+import java.util.Objects;
 
 @DataType()
-public class CallForProposal extends State {
+public final class CallForProposal {
 
-    // Enumerate commercial paper state values
     public final static String CREATED = "CREATED";
     public final static String CALLING = "CALLING";
     public final static String ENDED = "ENDED";
 
     @Property()
     private String state="";
-
-    public String getState() {
-        return state;
-    }
-
-    public org.contractnet.CallForProposal setState(String state) {
-        this.state = state;
-        return this;
-    }
 
     @JSONPropertyIgnore()
     public boolean isCreated() {
@@ -65,95 +53,65 @@ public class CallForProposal extends State {
     }
 
     @Property()
-    private String id;
+    private List<Partecipant> partecipants;
 
     @Property()
-    private String initiator;
+    private final String initiator;
 
     @Property()
-    private String task;
-
-    @Property()
-    private ArrayList<Partecipant> partecipants;
-
-    public CallForProposal() {
-        super();
-    }
-
-    public org.contractnet.CallForProposal setKey() {
-        this.key = State.makeKey(new String[] { this.id });
-        return this;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public org.contractnet.CallForProposal setId(String id) {
-        this.id = id;
-        return this;
-    }
+    private final String task;
 
     public String getInitiator() {
         return initiator;
-    }
-
-    public org.contractnet.CallForProposal setInitiator(String initiator) {
-        this.initiator = initiator;
-        return this;
     }
 
     public String getTask() {
         return task;
     }
 
-    public org.contractnet.CallForProposal setTask(String task) {
-        this.task = task;
-        return this;
+    public String getState() {
+        return state;
     }
 
-    public ArrayList<Partecipant> getPartecipants() {
+    public List<Partecipant> getPartecipants() {
         return partecipants;
-    }
-
-    public void setPartecipants(ArrayList<Partecipant> partecipants) {
-        this.partecipants = partecipants;
     }
 
     public void addPartecipant(Partecipant partecipant) {
         this.partecipants.add(partecipant);
     }
 
+    public CallForProposal(@JsonProperty("initiator") final String initiator, @JsonProperty("task") final String task,
+                           @JsonProperty("state") final String state) {
+        this.initiator = initiator;
+        this.task = task;
+        this.state = state;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if ((obj == null) || (getClass() != obj.getClass())) {
+            return false;
+        }
+
+        org.contractnet.CallForProposal other = (org.contractnet.CallForProposal) obj;
+
+        return Objects.deepEquals(new String[] {getInitiator(), getTask(), getState()},
+                new String[] {other.getInitiator(), other.getTask(), other.getState()});
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getInitiator(), getTask(), getState());
+    }
+
     @Override
     public String toString() {
-        return "CFP:" + this.key + "   " + this.getId() + " " + getInitiator() + " " + getTask() + " " + getState() + " " + getPartecipants();
+        return this.getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()) + " [initiator=" + initiator + ", task="
+                + task + ", state=" + state + "]";
     }
-
-    /**
-     * Deserialize a state data to commercial paper
-     *
-     * @param {Buffer} data to form back into the object
-     */
-    public static org.contractnet.CallForProposal deserialize(byte[] data) {
-        JSONObject json = new JSONObject(new String(data, UTF_8));
-
-        String initiator = json.getString("initiator");
-        String id = json.getString("id");
-        String task = json.getString("task");
-        String state = json.getString("state");
-        return createInstance(initiator, id, task, state);
-    }
-
-    public static byte[] serialize(org.contractnet.CallForProposal paper) {
-        return State.serialize(paper);
-    }
-
-    /**
-     * Factory method to create a commercial paper object
-     */
-    public static org.contractnet.CallForProposal createInstance(String initiator, String id, String task, String state) {
-        return new org.contractnet.CallForProposal().setInitiator(initiator).setId(id).setKey().setTask(task).setState(state);
-    }
-
-
 }
