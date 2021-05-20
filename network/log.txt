@@ -1,2 +1,2 @@
-Committed chaincode definition for chaincode 'contractnet' on channel 'mychannel':
-Version: 18.0, Sequence: 18, Endorsement Plugin: escc, Validation Plugin: vscc, Approvals: [Org1MSP: true, Org2MSP: true]
+[34m2021-05-20 09:25:10.279 CEST [channelCmd] InitCmdFactory -> INFO 001[0m Endorser and orderer connections initialized
+[34m2021-05-20 09:25:10.327 CEST [channelCmd] executeJoin -> INFO 002[0m Successfully submitted proposal to join channel

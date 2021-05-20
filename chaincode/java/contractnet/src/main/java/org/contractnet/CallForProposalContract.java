@@ -98,7 +98,7 @@ public final class CallForProposalContract implements ContractInterface {
 
     @Transaction()
     public CallForProposal createCallForProposal(final Context ctx, final String key, final String initiator, final String task,
-            final String state) {
+                                                 final String state) {
         ChaincodeStub stub = ctx.getStub();
 
         String callForProposalState = stub.getStringState(key);
