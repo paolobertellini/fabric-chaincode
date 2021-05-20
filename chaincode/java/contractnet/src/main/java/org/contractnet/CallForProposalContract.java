@@ -37,64 +37,40 @@ public final class CallForProposalContract implements ContractInterface {
     private enum FabCallForProposalErrors {
         CallForProposal_NOT_FOUND,
         CallForProposal_ALREADY_EXISTS,
+        Partecipant_NOT_FOUND,
         Partecipant_ALREADY_EXISTS
     }
 
-    /**
-     * Retrieves a callForProposal with the specified key from the ledger.
-     *
-     * @param ctx the transaction context
-     * @param key the key
-     * @return the CallForProposal found on the ledger if there was one
-     */
-    @Transaction()
-    public CallForProposal queryCallForProposal(final Context ctx, final String key) {
-        ChaincodeStub stub = ctx.getStub();
-        String callForProposalState = stub.getStringState(key);
-
-        if (callForProposalState.isEmpty()) {
-            String errorMessage = String.format("CallForProposal %s does not exist", key);
-            System.out.println(errorMessage);
-            throw new ChaincodeException(errorMessage, FabCallForProposalErrors.CallForProposal_NOT_FOUND.toString());
-        }
-
-        CallForProposal callForProposal = genson.deserialize(callForProposalState, CallForProposal.class);
-
-        return callForProposal;
-    }
-
-    @Transaction()
+     @Transaction()
     public void initLedger(final Context ctx) {
         ChaincodeStub stub = ctx.getStub();
 
-        String[] callForProposalData = {
-                "{ \"initiator\": \"Paul\", \"task\": \"Generate random numbers\" }",
-                "{ \"initiator\": \"Paul\", \"task\": \"Paint car\" }",
-                "{ \"initiator\": \"John\", \"task\": \"Computations\" }",
-                "{ \"initiator\": \"Frank\", \"task\": \"Find best path\" }",
-        };
-        String[] partecipantData = {
-                "{ \"name\": \"partecipant 1\" }",
-                "{ \"name\": \"partecipant 2\" }",
-                "{ \"name\": \"partecipant 3\" }",
-                "{ \"name\": \"partecipant 4\" }",
-        };
+        List<CallForProposal> calls = new ArrayList<>();
+        calls.add(new CallForProposal("Paul", "Paint car", CallForProposal.CREATED, new ArrayList<String>()));
+        calls.add(new CallForProposal("John", "Find best path", CallForProposal.CREATED, new ArrayList<String>()));
+        calls.add(new CallForProposal("Frank", "Generate random numbers", CallForProposal.CREATED, new ArrayList<String>()));
 
-        for (int i = 0; i < callForProposalData.length; i++) {
-            String key = String.format("cfp%d", i);
+        List<Partecipant> partecipants = new ArrayList<>();
+        partecipants.add(new Partecipant("partecipant1", Partecipant.WAITING, -1));
+        partecipants.add(new Partecipant("partecipant2", Partecipant.WAITING, -1));
+        partecipants.add(new Partecipant("partecipant3", Partecipant.WAITING, -1));
 
-            CallForProposal callForProposal = genson.deserialize(callForProposalData[i], CallForProposal.class);
-            String callForProposalState = genson.serialize(callForProposal);
+        for (int i = 0; i < calls.size(); i++) {
+            String key = String.format("cfp%d", i+1);
+            String callForProposalState = genson.serialize(calls.get(i));
             stub.putStringState(key, callForProposalState);
         }
-        for (int i = 0; i < partecipantData.length; i++) {
-            String key = String.format("prt%d", i);
 
-            Partecipant partecipant = genson.deserialize(partecipantData[i], Partecipant.class);
-            String partecipantState = genson.serialize(partecipant);
+        for (int i = 0; i < partecipants.size(); i++) {
+            String key = String.format("prt%d", i+1);
+            String partecipantState = genson.serialize(partecipants.get(i));
             stub.putStringState(key, partecipantState);
         }
+
     }
+
+
+    /* Create */
 
     @Transaction()
     public CallForProposal createCallForProposal(final Context ctx, final String key, final String initiator, final String task,
@@ -114,7 +90,6 @@ public final class CallForProposalContract implements ContractInterface {
 
         return callForProposal;
     }
-
     @Transaction()
     public Partecipant createPartecipant(final Context ctx, final String key, final String name) {
         ChaincodeStub stub = ctx.getStub();
@@ -126,7 +101,7 @@ public final class CallForProposalContract implements ContractInterface {
             throw new ChaincodeException(errorMessage, FabCallForProposalErrors.Partecipant_ALREADY_EXISTS.toString());
         }
 
-        Partecipant partecipant = new Partecipant(name, Partecipant.WAITING);
+        Partecipant partecipant = new Partecipant(name, Partecipant.WAITING, -1);
         partecipantState = genson.serialize(partecipant);
         stub.putStringState(key, partecipantState);
 
@@ -134,56 +109,32 @@ public final class CallForProposalContract implements ContractInterface {
     }
 
 
-    @Transaction()
-    public CallForProposal callAllPartecipants(final Context ctx, final String key) {
-        ChaincodeStub stub = ctx.getStub();
+    /* Query */
 
+    public CallForProposal getCallForProposal(final Context ctx, final String key){
+        ChaincodeStub stub = ctx.getStub();
         String callForProposalState = stub.getStringState(key);
         if (callForProposalState.isEmpty()) {
             String errorMessage = String.format("CallForProposal %s does not exist", key);
             System.out.println(errorMessage);
             throw new ChaincodeException(errorMessage, FabCallForProposalErrors.CallForProposal_NOT_FOUND.toString());
         }
-
-        final String startKey = "prt1";
-        final String endKey = "prt99";
-
-        List<PartecipanyQueryResult> queryResults = new ArrayList<>();
-        List<String> partecipants = new ArrayList<>();
-        QueryResultsIterator<KeyValue> results = stub.getStateByRange(startKey, endKey);
-
-        for (KeyValue result: results) {
-
-            String partecipantState = stub.getStringState(result.getKey());
-
-            Partecipant partecipant = genson.deserialize(partecipantState, Partecipant.class);
-            queryResults.add(new PartecipanyQueryResult(result.getKey(), partecipant));
-
-            Partecipant newPartecipant = new Partecipant(partecipant.getName(), Partecipant.CALLED);
-
-            String newPartecipantState = genson.serialize(newPartecipant);
-            stub.putStringState(result.getKey(), newPartecipantState);
-            if (newPartecipant.isWaiting()) {
-                partecipants.add(newPartecipant.getName());
-            }
-
-        }
-
         CallForProposal callForProposal = genson.deserialize(callForProposalState, CallForProposal.class);
-        CallForProposal newCallForProposal = new CallForProposal(callForProposal.getInitiator(), callForProposal.getTask(), callForProposal.CALLING, partecipants);
-        String newCallForProposalState = genson.serialize(newCallForProposal);
-        stub.putStringState(key, newCallForProposalState);
-
-        return newCallForProposal;
+        return callForProposal;
     }
 
+    public Partecipant getPartecipant(final Context ctx, final String key){
+        ChaincodeStub stub = ctx.getStub();
+        String partecipantState = stub.getStringState(key);
+        if (partecipantState.isEmpty()) {
+            String errorMessage = String.format("Partecipant %s does not exist", key);
+            System.out.println(errorMessage);
+            throw new ChaincodeException(errorMessage, FabCallForProposalErrors.Partecipant_NOT_FOUND.toString());
+        }
+        Partecipant partecipant = genson.deserialize(partecipantState, Partecipant.class);
+        return partecipant;
+    }
 
-    /**
-     * Retrieves all callForProposals from the ledger.
-     *
-     * @param ctx the transaction context
-     * @return array of CallForProposals found on the ledger
-     */
     @Transaction()
     public String queryAllCallForProposals(final Context ctx) {
         ChaincodeStub stub = ctx.getStub();
@@ -204,25 +155,19 @@ public final class CallForProposalContract implements ContractInterface {
         return response;
     }
 
-    /**
-     * Retrieves all partecipants from the ledger.
-     *
-     * @param ctx the transaction context
-     * @return array of partecipants found on the ledger
-     */
     @Transaction()
     public String queryAllPartecipants(final Context ctx) {
         ChaincodeStub stub = ctx.getStub();
 
         final String startKey = "prt1";
         final String endKey = "prt99";
-        List<PartecipanyQueryResult> queryResults = new ArrayList<>();
+        List<PartecipantQueryResult> queryResults = new ArrayList<>();
 
         QueryResultsIterator<KeyValue> results = stub.getStateByRange(startKey, endKey);
 
         for (KeyValue result: results) {
             Partecipant partecipant = genson.deserialize(result.getStringValue(), Partecipant.class);
-            queryResults.add(new PartecipanyQueryResult(result.getKey(), partecipant));
+            queryResults.add(new PartecipantQueryResult(result.getKey(), partecipant));
         }
 
         final String response = genson.serialize(queryResults);
@@ -230,34 +175,122 @@ public final class CallForProposalContract implements ContractInterface {
         return response;
     }
 
-    /**
-     * Changes the owner of a callForProposal on the ledger.
-     *
-     * @param ctx the transaction context
-     * @param key the key
-     * @return the updated CallForProposal
-     */
+
+    /* operations */
+
     @Transaction()
-    public CallForProposal changeCallForProposalOwner(final Context ctx, final String key, final String newTask) {
+    public String callAllPartecipants(final Context ctx, final String key) {
         ChaincodeStub stub = ctx.getStub();
 
-        String callForProposalState = stub.getStringState(key);
+        CallForProposal callForProposal = getCallForProposal(ctx, key);
 
-        if (callForProposalState.isEmpty()) {
-            String errorMessage = String.format("CallForProposal %s does not exist", key);
-            System.out.println(errorMessage);
-            throw new ChaincodeException(errorMessage, FabCallForProposalErrors.CallForProposal_NOT_FOUND.toString());
-        }
+        final String startKey = "prt1";
+        final String endKey = "prt99";
+
+        List<PartecipantQueryResult> queryResults = new ArrayList<>();
         List<String> partecipants = new ArrayList<>();
-        partecipants.add("p1");
-        partecipants.add("p2");
+        QueryResultsIterator<KeyValue> results = stub.getStateByRange(startKey, endKey);
 
-        CallForProposal callForProposal = genson.deserialize(callForProposalState, CallForProposal.class);
+        for (KeyValue result: results) {
 
-        CallForProposal newCallForProposal = new CallForProposal(callForProposal.getInitiator(), callForProposal.getTask(), newTask, partecipants);
+            Partecipant partecipant = getPartecipant(ctx, result.getKey());
+            if (partecipant.isWaiting()) {
+                partecipants.add(result.getKey());
+                Partecipant newPartecipant = new Partecipant(partecipant.getName(), Partecipant.CALLED, -1);
+                String newPartecipantState = genson.serialize(newPartecipant);
+                stub.putStringState(result.getKey(), newPartecipantState);
+            }
+        }
+
+        CallForProposal newCallForProposal = new CallForProposal(callForProposal.getInitiator(), callForProposal.getTask(), callForProposal.CALLING, partecipants);
         String newCallForProposalState = genson.serialize(newCallForProposal);
         stub.putStringState(key, newCallForProposalState);
 
-        return newCallForProposal;
+        return partecipants.toString();
+    }
+
+    @Transaction()
+    public String refuseCallForProposal(final Context ctx, final String partecipantKey, final String cfpKey) {
+        ChaincodeStub stub = ctx.getStub();
+
+        CallForProposal callForProposal = getCallForProposal(ctx, cfpKey);
+        Partecipant partecipant = getPartecipant(ctx, partecipantKey);
+
+        if (!callForProposal.isCalling()) {
+            String errorMessage = String.format("Call for proposal %s is not calling", cfpKey);
+            System.out.println(errorMessage);
+            throw new ChaincodeException(errorMessage, errorMessage);
+        }
+
+        Partecipant newPartecipant = new Partecipant(partecipant.getName(), Partecipant.REFUSED, -1);
+        String newPartecipantState = genson.serialize(newPartecipant);
+        stub.putStringState(partecipantKey, newPartecipantState);
+
+        List<String> partecipants = callForProposal.getPartecipants();
+        partecipants.remove(partecipant.getName());
+
+        CallForProposal newCallForProposal = new CallForProposal(callForProposal.getInitiator(),
+                callForProposal.getTask(), CallForProposal.CALLING, partecipants);
+        String newCallForProposalState = genson.serialize(newCallForProposal);
+        stub.putStringState(cfpKey, newCallForProposalState);
+
+        return partecipants.toString();
+    }
+
+    @Transaction()
+    public String proposeForCallForProposal(final Context ctx, final String partecipantKey, final String cfpKey, final int offer) {
+        ChaincodeStub stub = ctx.getStub();
+
+        CallForProposal callForProposal = getCallForProposal(ctx, cfpKey);
+        Partecipant partecipant = getPartecipant(ctx, partecipantKey);
+
+        if (!callForProposal.isCalling()) {
+            String errorMessage = String.format("Call for proposal %s is not calling", cfpKey);
+            System.out.println(errorMessage);
+            throw new ChaincodeException(errorMessage, errorMessage);
+        }
+
+        Partecipant newPartecipant = new Partecipant(partecipant.getName(), Partecipant.PROPOSED, offer);
+        String newPartecipantState = genson.serialize(newPartecipant);
+        stub.putStringState(partecipantKey, newPartecipantState);
+
+        List<String> partecipants = callForProposal.getPartecipants();
+
+        CallForProposal newCallForProposal = new CallForProposal(callForProposal.getInitiator(),
+                callForProposal.getTask(), CallForProposal.CALLING, partecipants);
+        String newCallForProposalState = genson.serialize(newCallForProposal);
+        stub.putStringState(cfpKey, newCallForProposalState);
+
+        return partecipants.toString();
+    }
+
+    @Transaction()
+    public String closeCallForProposal(final Context ctx, final String cfpKey) {
+        ChaincodeStub stub = ctx.getStub();
+
+        CallForProposal callForProposal = getCallForProposal(ctx, cfpKey);
+
+        if (!callForProposal.isCalling()) {
+            String errorMessage = String.format("Call for proposal %s is not calling", cfpKey);
+            System.out.println(errorMessage);
+            throw new ChaincodeException(errorMessage, errorMessage);
+        }
+
+        List<PartecipantQueryResult> proposed = new ArrayList<>();
+        for(String key: callForProposal.getPartecipants()){
+            Partecipant partecipant = getPartecipant(ctx, key);
+            if(partecipant.isProposed()){
+                proposed.add(new PartecipantQueryResult(key, partecipant));
+            }
+            Partecipant newPartecipant = new Partecipant(partecipant.getName(), Partecipant.WAITING, -1);
+            String newPartecipantState = genson.serialize(newPartecipant);
+            stub.putStringState(key, newPartecipantState);
+        }
+
+        final String response = genson.serialize(proposed);
+
+        return response;
+
     }
 }
+

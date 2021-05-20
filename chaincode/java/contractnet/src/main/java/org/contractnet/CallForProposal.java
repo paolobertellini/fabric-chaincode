@@ -18,6 +18,7 @@ public final class CallForProposal {
 
     public final static String CREATED = "CREATED";
     public final static String CALLING = "CALLING";
+    public final static String RESPONDING = "RESPONDING";
     public final static String ENDED = "ENDED";
 
     @Property()
@@ -25,31 +26,41 @@ public final class CallForProposal {
 
     @JSONPropertyIgnore()
     public boolean isCreated() {
-        return this.state.equals(org.contractnet.CallForProposal.CREATED);
+        return this.state.equals(CallForProposal.CREATED);
     }
 
     @JSONPropertyIgnore()
     public boolean isCalling() {
-        return this.state.equals(org.contractnet.CallForProposal.CALLING);
+        return this.state.equals(CallForProposal.CALLING);
+    }
+
+    @JSONPropertyIgnore()
+    public boolean isResponding() {
+        return this.state.equals(CallForProposal.RESPONDING);
     }
 
     @JSONPropertyIgnore()
     public boolean isEnded() {
-        return this.state.equals(org.contractnet.CallForProposal.ENDED);
+        return this.state.equals(CallForProposal.ENDED);
     }
 
-    public org.contractnet.CallForProposal setCreated() {
-        this.state = org.contractnet.CallForProposal.CREATED;
+    public CallForProposal setCreated() {
+        this.state = CallForProposal.CREATED;
         return this;
     }
 
-    public org.contractnet.CallForProposal setCalling() {
-        this.state = org.contractnet.CallForProposal.CALLING;
+    public CallForProposal setCalling() {
+        this.state = CallForProposal.CALLING;
         return this;
     }
 
-    public org.contractnet.CallForProposal setEnded() {
-        this.state = org.contractnet.CallForProposal.ENDED;
+    public CallForProposal setResponding() {
+        this.state = CallForProposal.RESPONDING;
+        return this;
+    }
+
+    public CallForProposal setEnded() {
+        this.state = CallForProposal.ENDED;
         return this;
     }
 

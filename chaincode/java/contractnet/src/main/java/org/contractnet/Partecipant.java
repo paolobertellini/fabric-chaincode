@@ -16,10 +16,12 @@ public final class Partecipant {
 
     public final static String WAITING = "WAITING";
     public final static String CALLED = "CALLED";
+    public final static String REFUSED = "REFUSED";
+    public final static String PROPOSED = "PROPOSED";
     public final static String WORKING = "WORKING";
 
     @Property()
-    private String state="";
+    private String state = "";
 
     @JSONPropertyIgnore()
     public boolean isWaiting() {
@@ -29,6 +31,16 @@ public final class Partecipant {
     @JSONPropertyIgnore()
     public boolean isCalled() {
         return this.state.equals(Partecipant.CALLED);
+    }
+
+    @JSONPropertyIgnore()
+    public boolean isRefused() {
+        return this.state.equals(Partecipant.REFUSED);
+    }
+
+    @JSONPropertyIgnore()
+    public boolean isProposed() {
+        return this.state.equals(Partecipant.PROPOSED);
     }
 
     @JSONPropertyIgnore()
@@ -46,6 +58,16 @@ public final class Partecipant {
         return this;
     }
 
+    public Partecipant setRefused() {
+        this.state = Partecipant.REFUSED;
+        return this;
+    }
+
+    public Partecipant setProposed() {
+        this.state = Partecipant.PROPOSED;
+        return this;
+    }
+
     public Partecipant setWorking() {
         this.state = Partecipant.WORKING;
         return this;
@@ -54,19 +76,31 @@ public final class Partecipant {
     @Property()
     private final String name;
 
+    @Property()
+    private int offer;
 
     public String getName() {
         return name;
     }
 
+    public int getOffer() {
+        return offer;
+    }
 
     public String getState() {
         return state;
     }
 
-    public Partecipant(@JsonProperty("name") final String name, @JsonProperty("state") final String state) {
+    public Partecipant setOffer(int offer) {
+        this.offer = offer;
+        return this;
+    }
+
+    public Partecipant(@JsonProperty("name") final String name, @JsonProperty("state") final String state,
+            @JsonProperty("offer") final int offer) {
         this.name = name;
         this.state = state;
+        this.offer = offer;
     }
 
     @Override
@@ -81,8 +115,8 @@ public final class Partecipant {
 
         Partecipant other = (Partecipant) obj;
 
-        return Objects.deepEquals(new String[] {getName(), getState()},
-                new String[] {other.getName(), other.getState()});
+        return Objects.deepEquals(new String[]{getName(), getState()},
+                new String[]{other.getName(), other.getState()});
     }
 
     @Override
