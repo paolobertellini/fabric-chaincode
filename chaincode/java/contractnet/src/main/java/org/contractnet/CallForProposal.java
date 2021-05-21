@@ -18,7 +18,7 @@ public final class CallForProposal {
 
     public final static String CREATED = "CREATED";
     public final static String CALLING = "CALLING";
-    public final static String RESPONDING = "RESPONDING";
+    public final static String WORKING = "WORKING";
     public final static String ENDED = "ENDED";
 
     @Property()
@@ -35,8 +35,8 @@ public final class CallForProposal {
     }
 
     @JSONPropertyIgnore()
-    public boolean isResponding() {
-        return this.state.equals(CallForProposal.RESPONDING);
+    public boolean isWorking() {
+        return this.state.equals(CallForProposal.WORKING);
     }
 
     @JSONPropertyIgnore()
@@ -54,8 +54,8 @@ public final class CallForProposal {
         return this;
     }
 
-    public CallForProposal setResponding() {
-        this.state = CallForProposal.RESPONDING;
+    public CallForProposal setWorking() {
+        this.state = CallForProposal.WORKING;
         return this;
     }
 
@@ -73,6 +73,9 @@ public final class CallForProposal {
     @Property()
     private final String task;
 
+    @Property()
+    private String winner;
+
     public String getInitiator() {
         return initiator;
     }
@@ -85,6 +88,10 @@ public final class CallForProposal {
         return state;
     }
 
+    public String getWinner() { return winner; }
+
+    public void setWinner(String winner) { this.winner = winner; }
+
     public List<String> getPartecipants() {
         return partecipants;
     }
@@ -96,6 +103,7 @@ public final class CallForProposal {
         this.task = task;
         this.state = state;
         this.partecipants = partecipants;
+        this.winner = "";
     }
 
     @Override

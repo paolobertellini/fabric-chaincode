@@ -35,6 +35,8 @@ public final class PartecipantQueryResult {
         return record;
     }
 
+    public int getOffer() { return record.getOffer(); }
+
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {

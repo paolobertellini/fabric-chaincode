@@ -14,6 +14,8 @@ import org.hyperledger.fabric.shim.ledger.KeyValue;
 import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -108,6 +110,21 @@ public final class CallForProposalContract implements ContractInterface {
         return partecipant;
     }
 
+    /* Update */
+
+    public CallForProposal updateCallForProposal(final Context ctx, final String key, final String initiator, final String task, final String state, final List<String> partecipants) {
+        CallForProposal newCallForProposal = new CallForProposal(initiator, task, state, partecipants);
+        String newCallForProposalState = genson.serialize(newCallForProposal);
+        ctx.getStub().putStringState(key, newCallForProposalState);
+        return newCallForProposal;
+    }
+
+    public Partecipant updatePartecipant(final Context ctx, final String key, final String name, final String state, final int offer) {
+        Partecipant newPartecipant = new Partecipant(name, state, offer);
+        String newPartecipantState = genson.serialize(newPartecipant);
+        ctx.getStub().putStringState(key, newPartecipantState);
+        return newPartecipant;
+    }
 
     /* Query */
 
@@ -192,20 +209,14 @@ public final class CallForProposalContract implements ContractInterface {
         QueryResultsIterator<KeyValue> results = stub.getStateByRange(startKey, endKey);
 
         for (KeyValue result: results) {
-
             Partecipant partecipant = getPartecipant(ctx, result.getKey());
             if (partecipant.isWaiting()) {
                 partecipants.add(result.getKey());
-                Partecipant newPartecipant = new Partecipant(partecipant.getName(), Partecipant.CALLED, -1);
-                String newPartecipantState = genson.serialize(newPartecipant);
-                stub.putStringState(result.getKey(), newPartecipantState);
+                updatePartecipant(ctx, result.getKey(), partecipant.getName(), Partecipant.CALLED, -1);
             }
         }
 
-        CallForProposal newCallForProposal = new CallForProposal(callForProposal.getInitiator(), callForProposal.getTask(), callForProposal.CALLING, partecipants);
-        String newCallForProposalState = genson.serialize(newCallForProposal);
-        stub.putStringState(key, newCallForProposalState);
-
+        updateCallForProposal(ctx, key, callForProposal.getInitiator(), callForProposal.getTask(), CallForProposal.CALLING, partecipants);
         return partecipants.toString();
     }
 
@@ -222,17 +233,12 @@ public final class CallForProposalContract implements ContractInterface {
             throw new ChaincodeException(errorMessage, errorMessage);
         }
 
-        Partecipant newPartecipant = new Partecipant(partecipant.getName(), Partecipant.REFUSED, -1);
-        String newPartecipantState = genson.serialize(newPartecipant);
-        stub.putStringState(partecipantKey, newPartecipantState);
+        updatePartecipant(ctx, partecipantKey, partecipant.getName(), Partecipant.REFUSED, -1);
 
         List<String> partecipants = callForProposal.getPartecipants();
-        partecipants.remove(partecipant.getName());
+        partecipants.remove(partecipantKey);
 
-        CallForProposal newCallForProposal = new CallForProposal(callForProposal.getInitiator(),
-                callForProposal.getTask(), CallForProposal.CALLING, partecipants);
-        String newCallForProposalState = genson.serialize(newCallForProposal);
-        stub.putStringState(cfpKey, newCallForProposalState);
+        updateCallForProposal(ctx, cfpKey, callForProposal.getInitiator(), callForProposal.getTask(), CallForProposal.CALLING, partecipants);
 
         return partecipants.toString();
     }
@@ -250,18 +256,32 @@ public final class CallForProposalContract implements ContractInterface {
             throw new ChaincodeException(errorMessage, errorMessage);
         }
 
-        Partecipant newPartecipant = new Partecipant(partecipant.getName(), Partecipant.PROPOSED, offer);
-        String newPartecipantState = genson.serialize(newPartecipant);
-        stub.putStringState(partecipantKey, newPartecipantState);
-
+        updatePartecipant(ctx, partecipantKey, partecipant.getName(), Partecipant.PROPOSED, offer);
         List<String> partecipants = callForProposal.getPartecipants();
-
-        CallForProposal newCallForProposal = new CallForProposal(callForProposal.getInitiator(),
-                callForProposal.getTask(), CallForProposal.CALLING, partecipants);
-        String newCallForProposalState = genson.serialize(newCallForProposal);
-        stub.putStringState(cfpKey, newCallForProposalState);
+        updateCallForProposal(ctx, cfpKey, callForProposal.getInitiator(), callForProposal.getTask(), CallForProposal.CALLING, partecipants);
 
         return partecipants.toString();
+    }
+
+    @Transaction()
+    public String callForProposalResult(final Context ctx, final String winnerKey) {
+        ChaincodeStub stub = ctx.getStub();
+
+        final String startKey = "prt1";
+        final String endKey = "prt99";
+        QueryResultsIterator<KeyValue> results = stub.getStateByRange(startKey, endKey);
+
+        for (KeyValue result : results) {
+            Partecipant partecipant = getPartecipant(ctx, result.getKey());
+            Partecipant newPartecipant;
+            if (result.getKey().equals(winnerKey)) {
+                updatePartecipant(ctx, result.getKey(), partecipant.getName(), Partecipant.WORKING, partecipant.getOffer());
+            }
+            else {
+                updatePartecipant(ctx, result.getKey(), partecipant.getName(), Partecipant.WAITING, -1);
+            }
+        }
+        return genson.serialize(results);
     }
 
     @Transaction()
@@ -282,15 +302,40 @@ public final class CallForProposalContract implements ContractInterface {
             if(partecipant.isProposed()){
                 proposed.add(new PartecipantQueryResult(key, partecipant));
             }
-            Partecipant newPartecipant = new Partecipant(partecipant.getName(), Partecipant.WAITING, -1);
-            String newPartecipantState = genson.serialize(newPartecipant);
-            stub.putStringState(key, newPartecipantState);
+            updatePartecipant(ctx, key, partecipant.getName(), Partecipant.WAITING, -1);
         }
 
-        final String response = genson.serialize(proposed);
+        PartecipantQueryResult winner = Collections.max(proposed, Comparator.comparingInt(PartecipantQueryResult::getOffer));
+        callForProposalResult(ctx, winner.getKey());
+        CallForProposal newCallForProposal = new CallForProposal(callForProposal.getInitiator(), callForProposal.getTask(),CallForProposal.WORKING, callForProposal.getPartecipants());
+        newCallForProposal.setWinner(winner.getKey());
+        String newCallForProposalState = genson.serialize(newCallForProposal);
+        ctx.getStub().putStringState(cfpKey, newCallForProposalState);
 
-        return response;
+        return winner.getKey();
 
+    }
+
+    @Transaction()
+    public String endCallForProposal(final Context ctx, final String cfpKey) {
+        ChaincodeStub stub = ctx.getStub();
+
+        CallForProposal callForProposal = getCallForProposal(ctx, cfpKey);
+
+        if (!callForProposal.isWorking()) {
+            String errorMessage = String.format("Call for proposal %s is not working", cfpKey);
+            System.out.println(errorMessage);
+            throw new ChaincodeException(errorMessage, errorMessage);
+        }
+
+        Partecipant partecipant = getPartecipant(ctx, callForProposal.getWinner());
+        updatePartecipant(ctx, callForProposal.getWinner(), partecipant.getName(), Partecipant.WAITING, -1);
+        CallForProposal newCallForProposal = new CallForProposal(callForProposal.getInitiator(), callForProposal.getTask(),CallForProposal.ENDED, callForProposal.getPartecipants());
+        newCallForProposal.setWinner(callForProposal.getWinner());
+        String newCallForProposalState = genson.serialize(newCallForProposal);
+        ctx.getStub().putStringState(cfpKey, newCallForProposalState);
+
+        return "Call for proposal ended";
     }
 }
 
